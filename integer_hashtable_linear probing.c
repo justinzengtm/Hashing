@@ -1,6 +1,6 @@
 /*
- * É¢ÁĞ±í - ÏßĞÔÌ½²â 
- * date:2018/12/20
+ * æ•£åˆ—è¡¨ - çº¿æ€§æ¢æµ‹ 
+ * date:2018/12/28
  *author:justin
  */ 
   
@@ -9,93 +9,93 @@
 #include <math.h>
 #include <stdbool.h>
 
-#define MaxTableSize 20 /*É¢ÁĞ±íµÄ×î´ó³¤¶È*/
-typedef int ElemType; /*¹Ø¼ü´ÊµÄÊı¾İÀàĞÍÎªÕûĞÍ*/
-typedef int Index; /*É¢ÁĞ±íµÄµØÖ·ÀàĞÍÎªÕûĞÍ*/
-typedef int Position; /*Êı¾İËùÔÚµÄÎ»ÖÃÀàĞÍÓëÉ¢ÁĞ±íµÄµØÖ·ÀàĞÍÒ»ÖÂ*/
+#define MaxTableSize 20 /*æ•£åˆ—è¡¨çš„æœ€å¤§é•¿åº¦*/
+typedef int ElemType; /*å…³é”®è¯çš„æ•°æ®ç±»å‹ä¸ºæ•´å‹*/
+typedef int Index; /*æ•£åˆ—è¡¨çš„åœ°å€ç±»å‹ä¸ºæ•´å‹*/
+typedef int Position; /*æ•°æ®æ‰€åœ¨çš„ä½ç½®ç±»å‹ä¸æ•£åˆ—è¡¨çš„åœ°å€ç±»å‹ä¸€è‡´*/
 
-/*É¢ÁĞ±íÖĞµ¥Ôª¸ñµÄ×´Ì¬ÀàĞÍ,LegitimateÎªÓĞºÏ·¨ÔªËØ;EmptyÎª¿Õµ¥Ôª¸ñ;DeletedÎªÓĞÒÑÉ¾³ıÔªËØ*/
+/*æ•£åˆ—è¡¨ä¸­å•å…ƒæ ¼çš„çŠ¶æ€ç±»å‹,Legitimateä¸ºæœ‰åˆæ³•å…ƒç´ ;Emptyä¸ºç©ºå•å…ƒæ ¼;Deletedä¸ºæœ‰å·²åˆ é™¤å…ƒç´ */
 typedef enum {
 	Legitimate, Empty, Deleted
 } EntryType; 
 
-/*É¢ÁĞ±íµ¥Ôª¸ñµÄ´æ´¢½á¹¹*/
+/*æ•£åˆ—è¡¨å•å…ƒæ ¼çš„å­˜å‚¨ç»“æ„*/
 typedef struct HashEntry Cell;
 struct HashEntry {
-	ElemType Data; /*µ¥Ôª¸ñ´æ·ÅµÄÔªËØ*/
-	EntryType Info; /*µ¥Ôª¸ñµÄ×´Ì¬*/
+	ElemType Data; /*å•å…ƒæ ¼å­˜æ”¾çš„å…ƒç´ */
+	EntryType Info; /*å•å…ƒæ ¼çš„çŠ¶æ€*/
 };
 
-/*É¢ÁĞ±íµÄ´æ´¢½á¹¹*/
+/*æ•£åˆ—è¡¨çš„å­˜å‚¨ç»“æ„*/
 typedef struct TableNode *HashTable;
 struct TableNode {
-	Cell *Cells; /*´æ·ÅÉ¢ÁĞ±íÊı¾İµÄÊı×é*/
-	int TableSize; /*É¢ÁĞ±íµÄ×î´ó³¤¶È*/
+	Cell *Cells; /*å­˜æ”¾æ•£åˆ—è¡¨æ•°æ®çš„æ•°ç»„*/
+	int TableSize; /*æ•£åˆ—è¡¨çš„æœ€å¤§é•¿åº¦*/
 };
 
-/*º¯ÊıÉùÃ÷*/
-int NextPrime(int N); /*·µ»Ø´óÓÚNÇÒ²»³¬¹ıMaxTableSizeµÄ×îĞ¡ËØÊı*/
-HashTable CreateTable(int TableSize); /*´´½¨²¢³õÊ¼»¯É¢ÁĞ±í*/
-void BuildHashTable(HashTable H); /*¹¹½¨É¢ÁĞ±í*/
-void PrintHashTable(HashTable H); /*Êä³öÉ¢ÁĞ±í*/
-int Hash(ElemType Data, int TableSize); /*É¢ÁĞº¯Êı*/ 
-Position LinearFind(HashTable H, ElemType Data); /*ÏßĞÔÌ½²â²éÕÒ*/
-bool Insert(HashTable H, ElemType Data); /*É¢ÁĞ±íµÄ²åÈë²Ù×÷*/
-void Find(HashTable H); /*ÓÃ»§Ê¹ÓÃÏßĞÔÌ½²â²éÕÒ*/
+/*å‡½æ•°å£°æ˜*/
+int NextPrime(int N); /*è¿”å›å¤§äºNä¸”ä¸è¶…è¿‡MaxTableSizeçš„æœ€å°ç´ æ•°*/
+HashTable CreateTable(int TableSize); /*åˆ›å»ºå¹¶åˆå§‹åŒ–æ•£åˆ—è¡¨*/
+void BuildHashTable(HashTable H); /*æ„å»ºæ•£åˆ—è¡¨*/
+void PrintHashTable(HashTable H); /*è¾“å‡ºæ•£åˆ—è¡¨*/
+int Hash(ElemType Data, int TableSize); /*æ•£åˆ—å‡½æ•°*/ 
+Position LinearFind(HashTable H, ElemType Data); /*çº¿æ€§æ¢æµ‹æŸ¥æ‰¾*/
+bool Insert(HashTable H, ElemType Data); /*æ•£åˆ—è¡¨çš„æ’å…¥æ“ä½œ*/
+void Find(HashTable H); /*ç”¨æˆ·ä½¿ç”¨çº¿æ€§æ¢æµ‹æŸ¥æ‰¾*/
 
 int main(int argc, char const *argv[]) 
 {
 	int i, data;
-	HashTable H=CreateTable(MaxTableSize); /*³õÊ¼»¯Ò»¸ö¿ÕµÄÉ¢ÁĞ±í*/ 
+	HashTable H=CreateTable(MaxTableSize); /*åˆå§‹åŒ–ä¸€ä¸ªç©ºçš„æ•£åˆ—è¡¨*/ 
 	printf("H->TableSize=%d\n", H->TableSize);
-	BuildHashTable(H); /*¹¹½¨É¢ÁĞ±í*/
-	printf("\nÉ¢ÁĞ±íÎª:\n");
+	BuildHashTable(H); /*æ„å»ºæ•£åˆ—è¡¨*/
+	printf("\næ•£åˆ—è¡¨ä¸º:\n");
 	PrintHashTable(H);
 	
-	Find(H); /*ÓÃ»§Ê¹ÓÃµÄ²éÕÒº¯Êı½Ó¿Ú*/
-	printf("\nÇëÊäÈëÒª²åÈëµÄÔªËØ:");
+	Find(H); /*ç”¨æˆ·ä½¿ç”¨çš„æŸ¥æ‰¾å‡½æ•°æ¥å£*/
+	printf("\nè¯·è¾“å…¥è¦æ’å…¥çš„å…ƒç´ :");
 	scanf("%d", &data);
 	Insert(H, data);
 	 
 	return 0;
 }
 
-/*·µ»Ø´óÓÚNÇÒ²»³¬¹ıMaxTableSizeµÄ×îĞ¡ËØÊı*/
+/*è¿”å›å¤§äºNä¸”ä¸è¶…è¿‡MaxTableSizeçš„æœ€å°ç´ æ•°*/
 int NextPrime(int N) 
 {
 	int i, p;
 	
-	p=(N%2)? N+2: N+1; /*»ñµÃ´óÓÚNµÄ×îĞ¡ÆæÊı*/
+	p=(N%2)? N+2: N+1; /*è·å¾—å¤§äºNçš„æœ€å°å¥‡æ•°*/
 	
-	//ÕÒ³ö´Óp¿ªÊ¼µÄÏÂÒ»¸öËØÊı 
+	//æ‰¾å‡ºä»på¼€å§‹çš„ä¸‹ä¸€ä¸ªç´ æ•° 
 	while (p<=MaxTableSize) {
 		for (i=p-1; i>2; i--) {
-			//Èç¹ûp²»ÊÇËØÊı,break; 
+			//å¦‚æœpä¸æ˜¯ç´ æ•°,break; 
 			if (!(p%i)) {
 				break;
 			}
 		}
-		//Èç¹ûÊÇËØÊı
+		//å¦‚æœæ˜¯ç´ æ•°
 		if (i==2) {
 			break;
 		} else {
-			//Ì½²âÏÂÒ»¸öÆæÊıÊÇ·ñÊÇËØÊı 
+			//æ¢æµ‹ä¸‹ä¸€ä¸ªå¥‡æ•°æ˜¯å¦æ˜¯ç´ æ•° 
 			p+=2;
 		}
 	}	
 }
 
-/*´´½¨Ê¼»¯É¢ÁĞ±í*/
+/*åˆ›å»ºå§‹åŒ–æ•£åˆ—è¡¨*/
 HashTable CreateTable(int TableSize) 
 {
 	int i=0;
 	HashTable H;
 	
 	H=(HashTable)malloc(sizeof(struct TableNode));
-	H->TableSize=NextPrime(TableSize); /*Ê¹µÃÉ¢ÁĞ±íµÄ×î´ó³¤¶ÈÊÇËØÊı*/ 
+	H->TableSize=NextPrime(TableSize); /*ä½¿å¾—æ•£åˆ—è¡¨çš„æœ€å¤§é•¿åº¦æ˜¯ç´ æ•°*/ 
 	H->Cells=(Cell*)malloc(H->TableSize*sizeof(Cell));
 	
-	/*³õÊ¼»¯Ã¿Ò»¸öµ¥Ôª¸ñµÄ×´Ì¬Îª¿Õ*/
+	/*åˆå§‹åŒ–æ¯ä¸€ä¸ªå•å…ƒæ ¼çš„çŠ¶æ€ä¸ºç©º*/
 	for (i=0; i<H->TableSize; i++) {
 		H->Cells[i].Info=Empty;
 	}
@@ -103,12 +103,12 @@ HashTable CreateTable(int TableSize)
 	return H;
 }
 
-/*¹¹½¨É¢ÁĞ±í*/
+/*æ„å»ºæ•£åˆ—è¡¨*/
 void BuildHashTable(HashTable H) 
 {
 	int i=0;
 	
-	printf("\nÇë´´½¨É¢ÁĞ±í:"); 
+	printf("\nè¯·åˆ›å»ºæ•£åˆ—è¡¨:"); 
 	while (i!=-1) {
 		scanf("%d", &i);
 		Insert(H, i);
@@ -117,7 +117,7 @@ void BuildHashTable(HashTable H)
 	return;
 } 
 
-/*Êä³öÉ¢ÁĞ±í*/
+/*è¾“å‡ºæ•£åˆ—è¡¨*/
 void PrintHashTable(HashTable H) 
 {
 	int i=0;
@@ -125,95 +125,95 @@ void PrintHashTable(HashTable H)
 	
 	for (i=0; i<=H->TableSize; i++) {
 		if (H->Cells[i].Info==Legitimate) {
-			printf("S[%d]£º", i);
+			printf("S[%d]ï¼š", i);
 			printf("%d\t", H->Cells[i].Data);
 			count++;
 		} else if (H->Cells[i].Info==Empty) {
-			printf("S[%d]£º", i);
+			printf("S[%d]ï¼š", i);
 		}
 		printf("\n");
 	}
-	printf("×°ÌîÒò×Ó=%f\n", count/H->TableSize);
+	printf("è£…å¡«å› å­=%f\n", count/H->TableSize);
 	
 	return;
 } 
 
-/*É¢ÁĞº¯Êı*/
+/*æ•£åˆ—å‡½æ•°*/
 int Hash(ElemType Data, int TableSize) 
 {
 	return (int)(Data%TableSize);
 }
 
-/*ÏßĞÔÌ½²â²éÕÒ*/
+/*çº¿æ€§æ¢æµ‹æŸ¥æ‰¾*/
 Position LinearFind(HashTable H, ElemType Data) 
 {
-	Position currentPos, newPos; /*Ò»¸öÖ¸Ê¾³õÊ¼²åÈëÎ»ÖÃ,Ò»¸öÖ¸Ê¾ĞÂÎ»ÖÃ*/
-	int collisionNum=0; /*¼ÇÂ¼·¢Éú³åÍ»µÄ´ÎÊı*/
+	Position currentPos, newPos; /*ä¸€ä¸ªæŒ‡ç¤ºåˆå§‹æ’å…¥ä½ç½®,ä¸€ä¸ªæŒ‡ç¤ºæ–°ä½ç½®*/
+	int collisionNum=0; /*è®°å½•å‘ç”Ÿå†²çªçš„æ¬¡æ•°*/
 	if (Data!=-1) {
-		/*¸ù¾İÉ¢ÁĞº¯ÊıÕÒµ½¸ÃÔªËØÓ¦¸Ã·ÅµÄ³õÊ¼Î»ÖÃ*/
+		/*æ ¹æ®æ•£åˆ—å‡½æ•°æ‰¾åˆ°è¯¥å…ƒç´ åº”è¯¥æ”¾çš„åˆå§‹ä½ç½®*/
 		newPos=currentPos=Hash(Data, H->TableSize); 
-		/*Èç¹û¸ÃÎ»ÖÃµÄµ¥Ôª¸ñ·Ç¿Õ,²¢ÇÒ²»ÊÇÒªÕÒµÄÔªËØÊ±,¼´·¢ÉúÁË³åÍ»*/
+		/*å¦‚æœè¯¥ä½ç½®çš„å•å…ƒæ ¼éç©º,å¹¶ä¸”ä¸æ˜¯è¦æ‰¾çš„å…ƒç´ æ—¶,å³å‘ç”Ÿäº†å†²çª*/
 		while (H->Cells[newPos].Info!=Empty && H->Cells[newPos].Data!=Data) {
-			/*³åÍ»´ÎÊı+1*/
+			/*å†²çªæ¬¡æ•°+1*/
 			collisionNum++;
-			/*ÏßĞÔÌ½²â,ÔöÁ¿+1*/
+			/*çº¿æ€§æ¢æµ‹,å¢é‡+1*/
 			newPos=currentPos+collisionNum; /*!!!!*/
-			/*ÌØÊâÇé¿öÅĞ¶Ï¿´Î»ÖÃÏÂ±êÊÇ·ñÔ½½ç,ÊÇ¾Íµ÷Õû³ÉÕıÈ·Î»ÖÃ*/
+			/*ç‰¹æ®Šæƒ…å†µåˆ¤æ–­çœ‹ä½ç½®ä¸‹æ ‡æ˜¯å¦è¶Šç•Œ,æ˜¯å°±è°ƒæ•´æˆæ­£ç¡®ä½ç½®*/
 			if (newPos>=H->TableSize) {
 				newPos=newPos%H->TableSize;
 			} 
 		}
-		printf("ÔªËØ%d²åÈë²Ù×÷:\tÉ¢ÁĞµØÖ·=%d\tÊµ¼ÊµØÖ·=%d\t³åÍ»´ÎÊı=%d\n", Data,currentPos, newPos, collisionNum);
+		printf("å…ƒç´ %dæ’å…¥æ“ä½œ:\tæ•£åˆ—åœ°å€=%d\tå®é™…åœ°å€=%d\tå†²çªæ¬¡æ•°=%d\n", Data,currentPos, newPos, collisionNum);
 	}
 	
-	return newPos; /*´ËÊ±µÄnewPosÎ»ÖÃÊÇDataµÄÎ»ÖÃ,»òÕßÊÇÒ»¸ö¿Õµ¥Ôª¸ñµÄÎ»ÖÃ*/
+	return newPos; /*æ­¤æ—¶çš„newPosä½ç½®æ˜¯Dataçš„ä½ç½®,æˆ–è€…æ˜¯ä¸€ä¸ªç©ºå•å…ƒæ ¼çš„ä½ç½®*/
 } 
 
-/*É¢ÁĞ±íµÄ²åÈë²Ù×÷*/
+/*æ•£åˆ—è¡¨çš„æ’å…¥æ“ä½œ*/
 bool Insert(HashTable H, ElemType Data) 
 {
-	Position Pos=LinearFind(H, Data); /*Ì½²âDataÊÇ·ñÒÑ´æÔÚÉ¢ÁĞ±íÖĞ*/
+	Position Pos=LinearFind(H, Data); /*æ¢æµ‹Dataæ˜¯å¦å·²å­˜åœ¨æ•£åˆ—è¡¨ä¸­*/
 	
 	if (Data!=-1 && H->Cells[Pos].Info!=Legitimate) {
-		/*Èç¹ûÕâ¸öµ¥Ôª¸ñÃ»ÓĞ±»Õ¼ÓÃ,ËµÃ÷Data¿ÉÒÔ²åÈëÔÚÕâ¸öPosÎ»ÖÃ*/ 
-		/*²åÈë*/
+		/*å¦‚æœè¿™ä¸ªå•å…ƒæ ¼æ²¡æœ‰è¢«å ç”¨,è¯´æ˜Dataå¯ä»¥æ’å…¥åœ¨è¿™ä¸ªPosä½ç½®*/ 
+		/*æ’å…¥*/
 		H->Cells[Pos].Data=Data;
 		H->Cells[Pos].Info=Legitimate;
 		return true;
 	} else if (Data==-1) {
 		return;
 	} else {
-		printf("¸ÃÔªËØÒÑ´æÔÚÓÚÉ¢ÁĞ±íÖĞ.\n");
+		printf("è¯¥å…ƒç´ å·²å­˜åœ¨äºæ•£åˆ—è¡¨ä¸­.\n");
 		return false;
 	}
 }
 
-/*ÓÃ»§Ê¹ÓÃÏßĞÔÌ½²â²éÕÒ*/
+/*ç”¨æˆ·ä½¿ç”¨çº¿æ€§æ¢æµ‹æŸ¥æ‰¾*/
 void Find(HashTable H) 
 {
-	Position currentPos, newPos; /*Ò»¸öÖ¸Ê¾³õÊ¼Î»ÖÃ,Ò»¸öÖ¸Ê¾ĞÂÎ»ÖÃ*/
-	int collisionNum=0; /*¼ÇÂ¼·¢Éú³åÍ»µÄ´ÎÊı*/
+	Position currentPos, newPos; /*ä¸€ä¸ªæŒ‡ç¤ºåˆå§‹ä½ç½®,ä¸€ä¸ªæŒ‡ç¤ºæ–°ä½ç½®*/
+	int collisionNum=0; /*è®°å½•å‘ç”Ÿå†²çªçš„æ¬¡æ•°*/
 	int Data=0;
 	
-	printf("\nÇëÊäÈëÒª²éÕÒµÄÔªËØ:");
+	printf("\nè¯·è¾“å…¥è¦æŸ¥æ‰¾çš„å…ƒç´ :");
 	scanf("%d", &Data); 
 	if (Data!=-1) {
-		/*¸ù¾İÉ¢ÁĞº¯ÊıÕÒµ½¸ÃÔªËØÓ¦¸Ã·ÅµÄ³õÊ¼Î»ÖÃ*/
+		/*æ ¹æ®æ•£åˆ—å‡½æ•°æ‰¾åˆ°è¯¥å…ƒç´ åº”è¯¥æ”¾çš„åˆå§‹ä½ç½®*/
 		newPos=currentPos=Hash(Data, H->TableSize); 
-		/*Èç¹û¸ÃÎ»ÖÃµÄµ¥Ôª¸ñ·Ç¿Õ,²¢ÇÒ²»ÊÇÒªÕÒµÄÔªËØÊ±,¼´·¢ÉúÁË³åÍ»*/
+		/*å¦‚æœè¯¥ä½ç½®çš„å•å…ƒæ ¼éç©º,å¹¶ä¸”ä¸æ˜¯è¦æ‰¾çš„å…ƒç´ æ—¶,å³å‘ç”Ÿäº†å†²çª*/
 		while (H->Cells[newPos].Info!=Empty && H->Cells[newPos].Data!=Data) {
-			/*³åÍ»´ÎÊı+1*/
+			/*å†²çªæ¬¡æ•°+1*/
 			collisionNum++;
-			/*ÏßĞÔÌ½²â,ÔöÁ¿+1*/
+			/*çº¿æ€§æ¢æµ‹,å¢é‡+1*/
 			newPos=currentPos+collisionNum; /*!!!!*/
-			/*ÌØÊâÇé¿öÅĞ¶Ï¿´Î»ÖÃÏÂ±êÊÇ·ñÔ½½ç,ÊÇ¾Íµ÷Õû³ÉÕıÈ·Î»ÖÃ*/
+			/*ç‰¹æ®Šæƒ…å†µåˆ¤æ–­çœ‹ä½ç½®ä¸‹æ ‡æ˜¯å¦è¶Šç•Œ,æ˜¯å°±è°ƒæ•´æˆæ­£ç¡®ä½ç½®*/
 			if (newPos>=H->TableSize) {
 				newPos=newPos%H->TableSize;
 			} 
 		}
 	}
 	
-	printf("²éÕÒ½á¹û£ºÔªËØ%dÉ¢ÁĞµØÖ·Îª=%d\n", Data, newPos);
+	printf("æŸ¥æ‰¾ç»“æœï¼šå…ƒç´ %dæ•£åˆ—åœ°å€ä¸º=%d\n", Data, newPos);
 	
 	return; 
 }
